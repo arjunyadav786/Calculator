@@ -13,7 +13,6 @@
     <Page.Resources>
         <FontFamily x:Key="icomoonFontFamily">ms-appx:///Assets/Fonts/icomoon.ttf#IcoMoon</FontFamily>
     </Page.Resources>
-
     <Grid Background="Transparent">
         <Grid x:Name="AppTitleBar"
               Canvas.ZIndex="1"
@@ -41,13 +40,11 @@
             DisplayModeChanged="NavigationViewControl_DisplayModeChanged"
             OpenPaneLength="280"
             Header="{x:Null}">
-
             <NavigationView.Background>
                 <AcrylicBrush Opacity="0.0"
                   TintColor="{ThemeResource SystemChromeLowColor}"
                   FallbackColor="{ThemeResource SystemChromeLowColor}"/>
             </NavigationView.Background>
-
             <NavigationView.MenuItems>
                 <NavigationViewItem x:Uid="Shell_Calculator" helpers:NavigationHelper.NavigateTo="Calculator.ViewModels.CalculatorViewModel">
                     <NavigationViewItem.Icon>
@@ -71,7 +68,6 @@
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
             </NavigationView.MenuItems>
-            
             <i:Interaction.Behaviors>
                 <behaviors:NavigationViewHeaderBehavior
         DefaultHeader="{x:Bind ((ContentControl)ViewModel.Selected).Content, Mode=OneWay}">
