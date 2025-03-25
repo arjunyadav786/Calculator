@@ -1,0 +1,91 @@
+﻿<Page
+    x:Class="Calculator.Views.ShellPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:helpers="using:Calculator.Helpers"
+    xmlns:behaviors="using:Calculator.Behaviors"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    Loaded="OnLoaded"
+    mc:Ignorable="d"
+    Background="{x:Null}">
+    <Page.Resources>
+        <FontFamily x:Key="icomoonFontFamily">ms-appx:///Assets/Fonts/icomoon.ttf#IcoMoon</FontFamily>
+    </Page.Resources>
+
+    <Grid Background="Transparent">
+        <Grid x:Name="AppTitleBar"
+              Canvas.ZIndex="1"
+              Height="{Binding ElementName=NavigationViewControl, Path=CompactPaneLength}"
+              IsHitTestVisible="True"
+              VerticalAlignment="Top">
+            <Image Source="/Assets/WindowIcon.ico"
+                   HorizontalAlignment="Left"
+                   Width="16"
+                   Height="16" />
+            <TextBlock x:Name="AppTitleBarText"
+                       VerticalAlignment="Center"
+                       TextWrapping="NoWrap"
+                       Style="{StaticResource CaptionTextBlockStyle}"
+                       Margin="28,0,0,0"/>
+        </Grid>
+        <NavigationView
+            x:Name="NavigationViewControl"
+            Canvas.ZIndex="0"
+            IsBackButtonVisible="Auto"
+            IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
+            SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
+            IsSettingsVisible="True"
+            ExpandedModeThresholdWidth="600"
+            DisplayModeChanged="NavigationViewControl_DisplayModeChanged"
+            OpenPaneLength="280"
+            Header="{x:Null}">
+
+            <NavigationView.Background>
+                <AcrylicBrush Opacity="0.0"
+                  TintColor="{ThemeResource SystemChromeLowColor}"
+                  FallbackColor="{ThemeResource SystemChromeLowColor}"/>
+            </NavigationView.Background>
+
+            <NavigationView.MenuItems>
+                <NavigationViewItem x:Uid="Shell_Calculator" helpers:NavigationHelper.NavigateTo="Calculator.ViewModels.CalculatorViewModel">
+                    <NavigationViewItem.Icon>
+                        <FontIcon FontFamily="{StaticResource icomoonFontFamily}" Glyph="&#xe900;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItemHeader Content="Extras"/>
+                <NavigationViewItem x:Uid="Shell_HF" helpers:NavigationHelper.NavigateTo="Calculator.ViewModels.HFViewModel">
+                    <NavigationViewItem.Icon>
+                        <FontIcon FontFamily="{StaticResource icomoonFontFamily}" Glyph="&#xe903;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem x:Uid="Shell_SI" helpers:NavigationHelper.NavigateTo="Calculator.ViewModels.SIViewModel">
+                    <NavigationViewItem.Icon>
+                        <FontIcon FontFamily="{StaticResource icomoonFontFamily}" Glyph="&#xe905;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem x:Uid="Shell_CI" helpers:NavigationHelper.NavigateTo="Calculator.ViewModels.CIViewModel">
+                    <NavigationViewItem.Icon>
+                        <FontIcon FontFamily="{StaticResource icomoonFontFamily}" Glyph="&#xe901;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+            </NavigationView.MenuItems>
+            
+            <i:Interaction.Behaviors>
+                <behaviors:NavigationViewHeaderBehavior
+        DefaultHeader="{x:Bind ((ContentControl)ViewModel.Selected).Content, Mode=OneWay}">
+                    <behaviors:NavigationViewHeaderBehavior.DefaultHeaderTemplate>
+                        <DataTemplate>
+                            <Grid>
+                            </Grid>
+                        </DataTemplate>
+                    </behaviors:NavigationViewHeaderBehavior.DefaultHeaderTemplate>
+                </behaviors:NavigationViewHeaderBehavior>
+            </i:Interaction.Behaviors>
+            <Grid Margin="5">
+                <Frame x:Name="NavigationFrame" />
+            </Grid>
+        </NavigationView>
+    </Grid>
+</Page>
