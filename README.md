@@ -16,7 +16,7 @@ Features Include :
 
 Here's the Preview of my Calculator : 
 
-![Screen Recording 2025-03-26 011135](https://github.com/user-attachments/assets/9452960d-fa83-4d37-9a1f-6c215c34fdfe)
+![Screen Recording 2025-03-26 011135(2)](https://github.com/user-attachments/assets/58ebbb9d-a37b-497f-b16e-3dde582d8f07)
 
 What's Left [ That I coudn't implement ] :
 
