@@ -6,8 +6,6 @@ Multiple Functions have been packed into a nice GUI. Available for both Windows 
 
 Also it's my first time using WinAppSDK, C# and XAML and I am learning it on my own! Hope you like it. :)
 
-Source Code [ PROTON DRIVE ] : https://drive.proton.me/urls/JP0QX537B4#Tr4F4cwP7xQn
-
 Features Include :
 
 - MicaAlt Blur ✅
@@ -25,7 +23,6 @@ What's Left [ That I coudn't implement ] :
 - Keymaps for All Operators and %. 
 - Certain UI Stuff.
 - History [ You CAN Implement my prototype HistoryPage.xaml! ]
-- Fix Square Root and Cube Root that broke for some reason.... [ TODO for v11.26100.1.0 Full Release ]
 
 Requirements :
 
