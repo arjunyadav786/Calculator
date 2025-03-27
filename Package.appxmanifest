@@ -13,7 +13,7 @@
   <Identity
     Name="Chill-Astro.Calculator"
     Publisher="CN=Chill-Astro"
-    Version="11.26100.1.0" />
+    Version="11.26100.2.0" />
     
   <mp:PhoneIdentity PhoneProductId="6c8aa7e5-3e67-4adf-84f4-6a719630cdb3" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
     

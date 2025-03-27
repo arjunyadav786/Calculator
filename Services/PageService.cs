@@ -19,6 +19,7 @@ public class PageService : IPageService
         Configure<SIViewModel, SIPage>();
         Configure<CIViewModel, CIPage>();
         Configure<SettingsViewModel, SettingsPage>();
+        Configure<SplashViewModel, SplashPage>();
     }
 
     public Type GetPageType(string key)

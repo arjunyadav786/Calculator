@@ -2,101 +2,118 @@
 using Calculator.Contracts.Services;
 using Calculator.Core.Contracts.Services;
 using Calculator.Core.Services;
-using Calculator.Helpers;
 using Calculator.Models;
 using Calculator.Services;
 using Calculator.ViewModels;
 using Calculator.Views;
-
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Windows.UI.Core;
+using Microsoft.UI.Xaml.Media.Animation;
+using System;
+using System.Threading.Tasks;
+using LaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEventArgs;
 
-namespace Calculator;
-
-public partial class App : Application
+namespace Calculator
 {
-    public IHost Host
+    public partial class App : Application
     {
-        get;
-    }
-
-    public static T GetService<T>()
-        where T : class
-    {
-        if ((App.Current as App)!.Host.Services.GetService(typeof(T)) is not T service)
+        public IHost Host
         {
-            throw new ArgumentException($"{typeof(T)} needs to be registered in ConfigureServices within App.xaml.cs.");
+            get;
         }
-
-        return service;
-    }
-
-    public static WindowEx MainWindow { get; } = new MainWindow();
-
-    public static UIElement? AppTitlebar { get; set; }
-
-    public App()
-    {
-        InitializeComponent();
-
-        Host = Microsoft.Extensions.Hosting.Host.
-        CreateDefaultBuilder().
-        UseContentRoot(AppContext.BaseDirectory).
-        ConfigureServices((context, services) =>
+        public static T GetService<T>()
+            where T : class
         {
-            // Default Activation Handler
-            services.AddTransient<ActivationHandler<LaunchActivatedEventArgs>, DefaultActivationHandler>();
+            if ((App.Current as App)!.Host.Services.GetService(typeof(T)) is not T service)
+            {
+                throw new ArgumentException($"{typeof(T)} needs to be registered in ConfigureServices within App.xaml.cs.");
+            }
 
-            // Other Activation Handlers
+            return service;
+        }
+        public static WindowEx MainWindow { get; } = new MainWindow();
 
-            // Services
-            services.AddSingleton<ILocalSettingsService, LocalSettingsService>();
-            services.AddSingleton<IThemeSelectorService, ThemeSelectorService>();
-            services.AddTransient<INavigationViewService, NavigationViewService>();
+        public static UIElement? AppTitlebar
+        {
+            get; set;
+        }
+        public App()
+        {
+            InitializeComponent();
 
-            services.AddSingleton<IActivationService, ActivationService>();
-            services.AddSingleton<IPageService, PageService>();
-            services.AddSingleton<INavigationService, NavigationService>();
+            Host = Microsoft.Extensions.Hosting.Host.
+            CreateDefaultBuilder().
+            UseContentRoot(AppContext.BaseDirectory).
+            ConfigureServices((context, services) =>
+            {
+                // Default Activation Handler
+                services.AddTransient<ActivationHandler<LaunchActivatedEventArgs>, DefaultActivationHandler>();
 
-            // Core Services
-            services.AddSingleton<IFileService, FileService>();
+                // Other Activation Handlers
 
-            // Views and ViewModels
-            services.AddTransient<SettingsViewModel>();
-            services.AddTransient<SettingsPage>();
-            services.AddTransient<CIViewModel>();
-            services.AddTransient<CIPage>();
-            services.AddTransient<SIViewModel>();
-            services.AddTransient<SIPage>();
-            services.AddTransient<HFViewModel>();
-            services.AddTransient<HFPage>();
-            services.AddTransient<CalculatorViewModel>();
-            services.AddTransient<CalculatorPage>();
-            services.AddTransient<ShellPage>();
-            services.AddTransient<ShellViewModel>();
+                // Services
+                services.AddSingleton<ILocalSettingsService, LocalSettingsService>();
+                services.AddSingleton<IThemeSelectorService, ThemeSelectorService>();
+                services.AddTransient<INavigationViewService, NavigationViewService>();
 
-            // Configuration
-            services.Configure<LocalSettingsOptions>(context.Configuration.GetSection(nameof(LocalSettingsOptions)));
-        }).
-        Build();
+                services.AddSingleton<IActivationService, ActivationService>();
+                services.AddSingleton<IPageService, PageService>();
+                services.AddSingleton<INavigationService, NavigationService>();
 
-        UnhandledException += App_UnhandledException;
-    }
+                // Core Services
+                services.AddSingleton<IFileService, FileService>();
 
-    private void App_UnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)
-    {
-        // TODO: Log and handle exceptions as appropriate.
-        // https://docs.microsoft.com/windows/windows-app-sdk/api/winrt/microsoft.ui.xaml.application.unhandledexception.
-    }
+                // Views and ViewModels
+                services.AddTransient<SettingsViewModel>();
+                services.AddTransient<SettingsPage>();
+                services.AddTransient<CIViewModel>();
+                services.AddTransient<CIPage>();
+                services.AddTransient<SIViewModel>();
+                services.AddTransient<SIPage>();
+                services.AddTransient<HFViewModel>();
+                services.AddTransient<HFPage>();
+                services.AddTransient<CalculatorViewModel>();
+                services.AddTransient<CalculatorPage>();
+                services.AddTransient<ShellPage>();
+                services.AddTransient<ShellViewModel>();
+                services.AddTransient<SplashPage>();
+                services.AddTransient<SplashViewModel>();
 
-    protected async override void OnLaunched(LaunchActivatedEventArgs args)
-    {
-        base.OnLaunched(args);
+                // Configuration
+                services.Configure<LocalSettingsOptions>(context.Configuration.GetSection(nameof(LocalSettingsOptions)));
+            }).
+            Build();
 
-        await App.GetService<IActivationService>().ActivateAsync(args);
+            UnhandledException += App_UnhandledException;
+        }
+        private void App_UnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)
+        {       
+        }
+        protected async override void OnLaunched(LaunchActivatedEventArgs args)
+        {
+            base.OnLaunched(args);
 
+            // Display the splash screen Page
+            var splashScreen = new SplashPage(); // Instantiate your SplashPage
+            MainWindow.Content = splashScreen;
+            MainWindow.Activate();
+
+            // Wait for the specified delay
+            await Task.Delay(1300);
+
+            // Start the fade-out animation
+            var fadeOutStoryboard = (Storyboard)splashScreen.Resources["FadeOutStoryboard"];
+            fadeOutStoryboard.Begin();
+
+            // Wait for the duration of the fade-out animation
+            await Task.Delay(400);
+
+            // Navigate to the main page and activate
+            var shellViewModel = App.GetService<ShellViewModel>();
+            MainWindow.Content = new ShellPage(shellViewModel);
+            await App.GetService<IActivationService>().ActivateAsync(args);
+        }
     }
 }

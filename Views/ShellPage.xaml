@@ -10,6 +10,11 @@
     Loaded="OnLoaded"
     mc:Ignorable="d"
     Background="{x:Null}">
+    <Page.Transitions>
+        <TransitionCollection>
+            <EntranceThemeTransition/>
+        </TransitionCollection>
+    </Page.Transitions>
     <Page.Resources>
         <FontFamily x:Key="icomoonFontFamily">ms-appx:///Assets/Fonts/icomoon.ttf#IcoMoon</FontFamily>
     </Page.Resources>

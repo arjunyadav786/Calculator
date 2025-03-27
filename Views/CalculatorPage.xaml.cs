@@ -6,6 +6,7 @@ using Windows.System;
 using Microsoft.UI.Xaml.Automation.Peers;
 using System.Collections.Generic;
 using System;
+using Microsoft.UI.Xaml.Media.Animation;
 
 namespace Calculator.Views;
 
@@ -45,7 +46,6 @@ public sealed partial class CalculatorPage : Page
         _operationString = "";
         _divisionByZeroOccurred = false;
     }
-
     private void NumberButton_Click(object sender, RoutedEventArgs e)
     {
         Button clickedButton = (Button)sender;
@@ -72,7 +72,6 @@ public sealed partial class CalculatorPage : Page
             }
         }
     }
-
     private void DecimalButton_Click(object sender, RoutedEventArgs e)
     {
         if (!DisplayTextBlock.Text.Contains("."))
@@ -84,7 +83,6 @@ public sealed partial class CalculatorPage : Page
         }
         _isNewNumberInput = false;
     }
-
     private void OperatorButton_Click(object sender, RoutedEventArgs e)
     {
         Button clickedButton = (Button)sender;
@@ -139,7 +137,6 @@ public sealed partial class CalculatorPage : Page
         _isNewNumberInput = true;
         DisplayTextBlock.Text = "0";
     }
-
     private void EqualsButton_Click(object sender, RoutedEventArgs e)
     {
         if (_currentOperator != "")
@@ -150,19 +147,16 @@ public sealed partial class CalculatorPage : Page
             _previousNumber = _currentNumber;
         }
     }
-
     private void ClearButton_Click(object sender, RoutedEventArgs e)
     {
         ClearCalculator();
     }
-
     private void ClearEntryButton_Click(object sender, RoutedEventArgs e)
     {
         DisplayTextBlock.Text = "0";
         _currentNumber = 0;
         _isNewNumberInput = true;
     }
-
     private void BackspaceButton_Click(object sender, RoutedEventArgs e)
     {
         if (DisplayTextBlock.Text.Length > 1)
@@ -182,7 +176,6 @@ public sealed partial class CalculatorPage : Page
             DisplayTextBlock.Text = currentNumber.ToString("N0");
         }
     }
-
     private void CalculateIntermediateResult()
     {
         if (_currentOperator != "")
@@ -193,7 +186,6 @@ public sealed partial class CalculatorPage : Page
             _isNewNumberInput = true;
         }
     }
-
     private void CalculateFinalResult()
     {
         if (_currentOperator != "")
@@ -221,7 +213,6 @@ public sealed partial class CalculatorPage : Page
             _previousNumber = result;
         }
     }
-
     private double PerformOperation(double num1, double num2, string operatorSymbol)
     {
         _divisionByZeroOccurred = false;
@@ -244,7 +235,6 @@ public sealed partial class CalculatorPage : Page
             default: return num2;
         }
     }
-
     private string GetOperatorSymbol(string operatorContent)
     {
         switch (operatorContent)
@@ -257,7 +247,6 @@ public sealed partial class CalculatorPage : Page
             default: return operatorContent;
         }
     }
-
     private void PercentButton_Click(object sender, RoutedEventArgs e)
     {
         if (_currentOperator != "")
@@ -283,7 +272,6 @@ public sealed partial class CalculatorPage : Page
             _isNewNumberInput = true;
         }
     }
-
     private void SquareButton_Click(object sender, RoutedEventArgs e)
     {
         OperationTextBlock.Text = $"sqr({_currentNumber})";
@@ -291,7 +279,6 @@ public sealed partial class CalculatorPage : Page
         DisplayTextBlock.Text = _currentNumber.ToString("N0");
         _isNewNumberInput = true;
     }
-
     private void PowerButton_Click(object sender, RoutedEventArgs e)
     {
         _isNewNumberInput = true;
@@ -301,7 +288,6 @@ public sealed partial class CalculatorPage : Page
         OperationTextBlock.Text = _operationString;
         DisplayTextBlock.Text = "0";
     }
-
     private void SquareRootButton_Click(object sender, RoutedEventArgs e)
     {
         if (_currentNumber < 0)
@@ -316,7 +302,6 @@ public sealed partial class CalculatorPage : Page
         }
         _isNewNumberInput = true;
     }
-
     private void CubeRootButton_Click(object sender, RoutedEventArgs e)
     {
         OperationTextBlock.Text = $"³√({_currentNumber})";
@@ -324,7 +309,6 @@ public sealed partial class CalculatorPage : Page
         DisplayTextBlock.Text = _currentNumber.ToString(); // No format specifier
         _isNewNumberInput = true;
     }
-
     private void CalculatorPage_KeyDown(object sender, KeyRoutedEventArgs e)
     {
         switch (e.Key)
@@ -403,14 +387,8 @@ public sealed partial class CalculatorPage : Page
             case VirtualKey.Escape:
                 ClearCalculator();
                 break;
-
-            default:
-                // Handle other keys if necessary
-                break;
         }
     }
-
-
     private void FindButtonAndClick(string content)
     {
         foreach (var element in FindVisualChildren<Button>(this))
@@ -423,7 +401,6 @@ public sealed partial class CalculatorPage : Page
             }
         }
     }
-
     private static System.Collections.Generic.IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
     {
         if (depObj != null)
@@ -442,9 +419,11 @@ public sealed partial class CalculatorPage : Page
             }
         }
     }
-
     private void CalculatorPage_Loaded(object sender, RoutedEventArgs e)
     {
         this.Focus(FocusState.Programmatic);
+        // Start the entrance animation
+        var entranceThemeTransition = new EntranceThemeTransition();
+        ContentGrid.Transitions = new TransitionCollection { entranceThemeTransition };
     }
 }
