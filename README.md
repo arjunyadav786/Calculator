@@ -14,6 +14,10 @@ Features Include :
 - More Powerful and Feature Rich than PyCalc-GUI and PyCalc and it's deravatives ✅
 - More User-Friendly ✅
 
+New Splash Screen Added in v11.26100.2.0 : 
+
+https://github.com/user-attachments/assets/af319786-19bf-48e2-a533-996c89cf170d
+
 Here's the Preview of my Calculator : 
 
 ![Screen Recording 2025-03-26 011135(2)](https://github.com/user-attachments/assets/58ebbb9d-a37b-497f-b16e-3dde582d8f07)
@@ -36,5 +40,3 @@ Installation steps :
 - Install the .msix as usual.
 
 NOTE: THIS CODE IS AI GENERATED! ALL CODE HAS BEEN REVIEWED AND TESTED.
-
-TESTED ON BOTH WINDOWS 11 AND WINDOWS 10.
