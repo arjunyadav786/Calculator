@@ -22,7 +22,7 @@ New Splash Screen Added in v11.26100.2.0 :
 
 https://github.com/user-attachments/assets/af319786-19bf-48e2-a533-996c89cf170d
 
-Added App Execution Aliases as : wincalc.exe | cac.exe | calc+.exe :
+Added App Execution Aliases as : wincalc.exe | cac.exe | calc+.exe  in v11.26100.3.0 :
 
 https://github.com/user-attachments/assets/a4a89a93-f358-4a26-ad5a-9a504bd0851e
 
