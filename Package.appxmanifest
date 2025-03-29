@@ -14,7 +14,7 @@
 	<Identity
 	  Name="Chill-Astro.Calculator"
 	  Publisher="CN=Chill-Astro"
-	  Version="11.26100.3.0" />
+	  Version="11.26100.4.0" />
 
 	<mp:PhoneIdentity PhoneProductId="6c8aa7e5-3e67-4adf-84f4-6a719630cdb3" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
@@ -63,6 +63,8 @@
 						<uap5:ExecutionAlias Alias="wincalc.exe" />
 						<uap5:ExecutionAlias Alias="calc+.exe" />
 						<uap5:ExecutionAlias Alias="cac.exe" />
+						<uap5:ExecutionAlias Alias="calcx.exe" />
+						<uap5:ExecutionAlias Alias="calcx-11.exe" />
 					</uap5:AppExecutionAlias>
 				</uap5:Extension>
 			</Extensions>
